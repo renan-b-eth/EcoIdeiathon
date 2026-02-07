@@ -5,10 +5,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EcoImpact - Rastreie seu Impacto Ambiental",
+  title: "DataBridge AI — Turn Any Spreadsheet Into Insights",
   description:
-    "Plataforma gamificada para rastrear e reduzir seu impacto ambiental. Registre ações sustentáveis, ganhe pontos e compete com amigos.",
-  keywords: ["sustentabilidade", "meio ambiente", "gamificação", "CO2", "impacto ambiental"],
+    "Upload any CSV and get AI-powered dashboards, insights, and narratives in seconds. No code required. Democratizing data analysis for everyone.",
+  keywords: ["data analysis", "AI", "CSV", "dashboard", "insights", "no-code"],
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="en">
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
