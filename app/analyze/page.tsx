@@ -19,7 +19,8 @@ import ScoreRing from "@/components/score-ring";
 import BiomarkerChart from "@/components/biomarker-chart";
 import NarrativeReport from "@/components/narrative-report";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+// Uses Next.js API proxy routes (app/api/*) which forward to the Flask backend.
+// The BACKEND_URL env var on the server side controls where the proxy sends requests.
 
 interface RiskCategory {
   score: number;
@@ -177,7 +178,7 @@ export default function AnalyzePage() {
       const formData = new FormData();
       formData.append("audio", audioBlob, fileName || "recording.webm");
 
-      const response = await fetch(`${API_URL}/api/analyze`, {
+      const response = await fetch("/api/analyze", {
         method: "POST",
         body: formData,
       });
@@ -193,7 +194,7 @@ export default function AnalyzePage() {
     } catch (err: unknown) {
       clearInterval(stepInterval);
       const msg = err instanceof Error ? err.message : "Analysis failed";
-      setError(`Analysis error: ${msg}. Make sure the backend is running on ${API_URL}`);
+      setError(`Analysis error: ${msg}. Make sure the Flask backend is running (python app.py).`);
     } finally {
       setIsAnalyzing(false);
       setAnalyzeStep("");
